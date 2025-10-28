@@ -191,12 +191,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    welcome_msg = """🤖 **CODE OPTIMIZER BOT**
-*by HAZY
-
+    welcome_msg = """🤖 CODE OPTIMIZER BOT
+by HAZY • @yaplol
 Ready to optimize? Send me some code! 🚀"""
     
-    await update.message.reply_text(welcome_msg, reply_markup=reply_markup, parse_mode='Markdown')
+    await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
 
 async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle .py file uploads"""
@@ -226,9 +225,8 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await update.message.reply_text(
-        f"✅ Received `{document.file_name}` ({len(code)} chars)\n\nChoose an operation:",
-        reply_markup=reply_markup,
-        parse_mode='Markdown'
+        f"✅ Received {document.file_name} ({len(code)} chars)\n\nChoose an operation:",
+        reply_markup=reply_markup
     )
 
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -346,11 +344,7 @@ Need help? Just ask! 🚀"""
 
 def main():
     """Start the bot"""
-    TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
-    
-    if not TOKEN:
-        logger.error("❌ TELEGRAM_BOT_TOKEN not set!")
-        sys.exit(1)
+    TOKEN = "7697666723:AAGRF1gv8DGI6P8vU_cWYc_2m26CAifya-E"
     
     # Start Flask in background thread for health checks
     flask_thread = Thread(target=run_flask, daemon=True)
