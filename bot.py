@@ -178,10 +178,11 @@ def add_try_except(code):
 
 # Telegram Bot Handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Start command"""
+    """Start command - NO BUTTONS"""
     welcome_msg = """🤖 CODE OPTIMIZER BOT
 by HAZY • @yaplol
-Ready to optimize? Send me some code! 🚀"""
+Ready to optimize? Send me some code now! 🚀"""
+    
     
     await update.message.reply_text(welcome_msg)
 
@@ -306,6 +307,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Help command"""
     help_text = """🆘 HELP - How to Use
 
+Send Code:
 • Upload a .py file
 • Or paste code directly
 
