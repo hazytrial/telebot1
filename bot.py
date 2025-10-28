@@ -147,7 +147,7 @@ def code_stats(code):
         lines = len(code.splitlines())
         comments = sum(1 for l in code.splitlines() if l.strip().startswith('#'))
         
-        stats = f"""📊 **Code Statistics**
+        stats = f"""📊 Code Statistics
 
 📝 Lines of Code: {lines}
 ⚙️ Functions: {functions}
@@ -179,23 +179,11 @@ def add_try_except(code):
 # Telegram Bot Handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Start command"""
-    keyboard = [
-        [InlineKeyboardButton("🔥 Ultimate Cleanup", callback_data='cleanup')],
-        [InlineKeyboardButton("✨ Beautify (autopep8)", callback_data='beautify')],
-        [InlineKeyboardButton("⚫ Black Format", callback_data='black')],
-        [InlineKeyboardButton("📦 Sort Imports", callback_data='imports')],
-        [InlineKeyboardButton("📄 Remove Docstrings", callback_data='docstrings')],
-        [InlineKeyboardButton("✅ Validate Syntax", callback_data='validate')],
-        [InlineKeyboardButton("📊 Code Stats", callback_data='stats')],
-        [InlineKeyboardButton("🛡 Add Try-Except", callback_data='tryexcept')],
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
     welcome_msg = """🤖 CODE OPTIMIZER BOT
 by HAZY • @yaplol
 Ready to optimize? Send me some code! 🚀"""
     
-    await update.message.reply_text(welcome_msg, reply_markup=reply_markup)
+    await update.message.reply_text(welcome_msg)
 
 async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle .py file uploads"""
@@ -270,7 +258,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     
     operation = query.data
-    await query.edit_message_text(f"⏳ Processing with **{operation}**...", parse_mode='Markdown')
+    await query.edit_message_text(f"⏳ Processing with {operation}...")
     
     # Execute operation
     operations = {
@@ -294,7 +282,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         # For stats and validation, just show text
         if operation in ['validate', 'stats']:
-            await query.edit_message_text(result, parse_mode='Markdown')
+            await query.edit_message_text(result)
             return
         
         # Send optimized code as file
@@ -305,8 +293,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_document(
                 document=bio,
                 filename=bio.name,
-                caption=f"✅ **Operation:** {operation}\n📁 **File:** {bio.name}\n📏 **Size:** {len(result)} chars",
-                parse_mode='Markdown'
+                caption=f"✅ Operation: {operation}\n📁 File: {bio.name}\n📏 Size: {len(result)} chars"
             )
             await query.edit_message_text(f"✅ Optimization complete! Check the file above.")
         else:
@@ -317,30 +304,29 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Help command"""
-    help_text = """🆘 **HELP - How to Use**
+    help_text = """🆘 HELP - How to Use
 
-**Send Code:**
 • Upload a .py file
 • Or paste code directly
 
-**Operations:**
-🔥 **Ultimate Cleanup** - Remove comments & blank lines
-✨ **Beautify** - Auto-format with autopep8
-⚫ **Black Format** - Format with Black
-📦 **Sort Imports** - Organize imports with isort
-📄 **Remove Docstrings** - Strip all docstrings
-✅ **Validate Syntax** - Check for syntax errors
-📊 **Code Stats** - Get code metrics
-🛡 **Try-Except** - Wrap in error handler
+Operations:
+🔥 Ultimate Cleanup - Remove comments & blank lines
+✨ Beautify - Auto-format with autopep8
+⚫ Black Format - Format with Black
+📦 Sort Imports - Organize imports with isort
+📄 Remove Docstrings - Strip all docstrings
+✅ Validate Syntax - Check for syntax errors
+📊 Code Stats - Get code metrics
+🛡 Try-Except - Wrap in error handler
 
-**Tips:**
+Tips:
 • Works with any Python code
 • Results sent as .py files
 • Stats shown as text
 
 Need help? Just ask! 🚀"""
     
-    await update.message.reply_text(help_text, parse_mode='Markdown')
+    await update.message.reply_text(help_text)
 
 def main():
     """Start the bot"""
