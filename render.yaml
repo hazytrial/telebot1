@@ -3,12 +3,12 @@ services:
     name: code-optimizer-bot
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python bot.py
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: 3.11.9
       - key: PORT
-        value: 8080
+        value: 10000
     healthCheckPath: /health
     autoDeploy: true
