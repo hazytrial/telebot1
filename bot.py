@@ -440,16 +440,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_msg = """🤖 CODE OPTIMIZER BOT v2.0
 by HAZY • @yaplol
 
-✨ Features:
-• 🗜️ Minify Code
-• 🛡️ Advanced Try-Except Options
-• 🔧 Auto-Fix Syntax Errors
-• 👥 Works in Groups (reply to code/send files)
-
-📋 Send me:
-• Python files (.py)
-• Code in messages (direct or reply)
-• Works in groups when you reply to code!
+✨ Features at /help
 
 Ready to optimize? Send me some code now! 🚀"""
     
@@ -667,13 +658,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Help command"""
-    help_text = """🆘 HELP - How to Use
-
-Send Code:
-• Upload a .py file
-• Paste code directly in private chat
-• In groups: Reply to code or mention bot
-
+    help_text = """🆘 HELP - Send the file and perform an operation...
 Operations:
 🔥 Cleanup - Remove comments & blank lines
 ✨ Beautify - Auto-format with autopep8
@@ -702,13 +687,7 @@ Operations:
 • Or mention @botname with your code
 • Upload .py files directly
 
-Tips:
-• Works with any Python code
-• Results sent as .py files
-• Minify can reduce file size significantly!
-• Auto-fix helps with broken code
-
-Need help? Just ask! 🚀"""
+Still Need help? Just ask Hazy • @yaplol! 🚀"""
     
     await update.message.reply_text(help_text)
 
@@ -718,7 +697,7 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     """Start the bot"""
-    TOKEN = "7697666723:AAGRF1gv8DGI6P8vU_cWYc_2m26CAifya-E"
+    TOKEN = "8555445957:AAFPOfR8a2deXyb4ag3B9yfLN4X3AU9BtbI"
     
     # Start Flask in background thread for health checks
     flask_thread = Thread(target=run_flask, daemon=True)
