@@ -11,8 +11,8 @@ from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQu
 from flask import Flask
 from threading import Thread
 
-REQUIRED_CHANNEL_ID = -1003419302071
-REQUIRED_CHANNEL_LINK = "https://t.me/+JJkGhk64acczNjI9"
+REQUIRED_CHANNEL_ID = -1003263186609
+REQUIRED_CHANNEL_LINK = "https://t.me/riotGC"
 
 def install(package):
     try:
@@ -526,7 +526,7 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.error(f"Error: {context.error}")
 
 def main():
-    TOKEN = "8555445957:AAFPOfR8a2deXyb4ag3B9yfLN4X3AU9BtbI"
+    TOKEN = "8599296437:AAFsnjpf6iV6qXTdROA83NJ-Q8Y8OJut2Ek"
     flask_thread = Thread(target=run_flask, daemon=True)
     flask_thread.start()
     application = Application.builder().token(TOKEN).build()
